@@ -1,172 +1,810 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>game app | Play Top Games & Win Now!</title>
-    <link href="https://fonts.googleapis.com/css?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>Flicksy Games - Premium Mobile Gaming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Tajawal', Arial, sans-serif;
-            background: linear-gradient(120deg, #1cb5e0 0%, #000851 100%);
+        * {
             margin: 0;
             padding: 0;
-            color: #fff;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #fd79a8;
+            --dark: #1e1e2e;
+            --darker: #161622;
+            --light: #f8f9fa;
+            --gray: #8d8da1;
+            --success: #00b894;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
             min-height: 100vh;
+            overflow-x: hidden;
         }
+
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: rgba(20,42,79,0.97);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-            padding: 36px 26px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
+
+        /* Header Styles */
         header {
-            text-align: center;
-            margin-bottom: 32px;
+            padding: 25px 0;
+            background: rgba(22, 22, 34, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .logo {
-            width: 160px;
-            margin-bottom: 20px;
-            border-radius: 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.16);
-            background: #fff;
-        }
-        h1 {
-            margin: 0 0 18px 0;
-            font-size: 2.5em;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        .desc {
-            font-size: 1.22em;
-            color: #B2E1FF;
-            margin-bottom: 24px;
-        }
-        .games-gallery {
+
+        .header-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            justify-content: center;
-            margin: 40px 0 14px 0;
-        }
-        .game-card {
-            background: #081a3c;
-            border-radius: 10px;
-            width: 190px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(10,30,50,0.10);
-            padding: 14px 12px 22px;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
         }
-        .game-card:hover {
-            transform: scale(1.05);
-            background: #143a7b;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        .game-image {
-            width: 115px;
-            height: 115px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-bottom: 12px;
-            background: #eee;
-            box-shadow: 0 1px 7px rgba(0,0,0,0.16);
+
+        .logo i {
+            font-size: 2.2rem;
         }
-        .game-title {
-            font-weight: bold;
-            font-size: 1.15em;
-            margin-bottom: 6px;
-            color: #ffe96b;
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
         }
-        .game-desc {
-            font-size: 1em;
-            margin-bottom: 13px;
-            color: #e6eeff;
-        }
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(92deg,#0FF 0%, #3b5cff 100%);
-            color: #212121;
-            font-weight: 700;
-            padding: 13px 26px;
-            border-radius: 24px;
-            font-size: 1.06em;
-            margin: 0 auto;
-            cursor: pointer;
-            box-shadow: 0 3px 16px rgba(11,216,255,0.15);
+
+        nav a {
+            color: var(--light);
             text-decoration: none;
-            transition: background 0.24s, color 0.24s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-btn {
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(108, 92, 231, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 45px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .stat {
             text-align: center;
         }
-        .cta-btn:hover {
-            background: linear-gradient(92deg,#3b5cff 0%, #0FF 100%);
-            color: #fff;
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
         }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Games Section */
+        .games-section {
+            padding: 80px 0 100px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, rgba(40, 40, 60, 0.8), rgba(30, 30, 50, 0.9));
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .game-image {
+            height: 220px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(22, 22, 34, 0.9), transparent);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .game-content {
+            padding: 25px;
+        }
+
+        .game-title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .game-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .game-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.1rem;
+        }
+
+        .rating-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .game-size {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .platforms {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .platform {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .platform i {
+            font-size: 1.1rem;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* Footer */
         footer {
-            text-align: center;
-            margin-top: 45px;
-            color: #b6b6b6;
-            font-size: 1em;
+            background: rgba(22, 22, 34, 0.95);
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        @media (max-width:650px){
-            .container {
-                padding: 10px 3vw;
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-column p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 15px;
+        }
+
+        .footer-column a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
             }
-            .games-gallery {
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
                 flex-direction: column;
-                align-items: center;
+                gap: 20px;
             }
-            .logo {
-                width: 100px;
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80" alt="game app logo" class="logo">
-            <h1>game app</h1>
-            <div class="desc">
-                Discover the hottest and most popular games! Enjoy playing & start winning exclusive rewards now.
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Flicksy Games</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Games</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">New Releases</a></li>
+                        <li><a href="#">Top Charts</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="cta-button">Get Started</button>
+                </div>
             </div>
-        </header>
-
-        <div class="games-gallery">
-            
-            <!-- GTA 5 -->
-            <div class="game-card">
-                <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="GTA 5" class="game-image">
-                <div class="game-title">GTA 5</div>
-                <div class="game-desc">Enjoy this game and download it now.</div>
-                <a href="https://redirectapps.org/cl/i/27lnol" class="cta-btn" target="_blank">Download</a>
-            </div>
-
-            <!-- Genshin Impact -->
-            <div class="game-card">
-                <img src="https://i.ibb.co/35PYxr3T/Genshin-Impact-Keyart.png" alt="Genshin Impact" class="game-image">
-                <div class="game-title">Genshin Impact</div>
-                <div class="game-desc">Enjoy this game and download it now.</div>
-                <a href="https://redirectapps.org/cl/i/27lnol" class="cta-btn" target="_blank">Download</a>
-            </div>
-
-            <!-- Spider Man -->
-            <div class="game-card">
-                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1817070/header.jpg" alt="spider man" class="game-image">
-                <div class="game-title">Spider Man</div>
-                <div class="game-desc">Enjoy this game and download it now.</div>
-                <a href="https://redirectapps.org/cl/i/27lnol" class="cta-btn" target="_blank">Download</a>
-            </div>
-
         </div>
-    </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Start Your Mobile Gaming Journey</h1>
+            <p>Discover the most thrilling mobile games and immerse yourself in incredible worlds right at your fingertips.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5M+</div>
+                    <div class="stat-label">Downloads</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Games</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="games-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Games</h2>
+                <p>Handpicked selection of the most exciting mobile games available today</p>
+            </div>
+            <div class="games-grid">
+                <!-- Game 1 -->
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://i.ibb.co/C5xFZY76/2bff45544e7e74a168be1936c3be95b68c46fa0144b3b475ab98c3b18466f455-200.webp');">
+                        <div class="game-badge">HOT</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">GTA 5 Mobile</h3>
+                        <p class="game-description">Experience the epic world of Los Santos on your mobile device with enhanced graphics and optimized controls.</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-value">4.7</span>
+                            </div>
+                            <div class="game-size">2.4 GB</div>
+                        </div>
+                        <div class="platforms">
+                            <div class="platform">
+                                <i class="fab fa-android"></i>
+                                <span>Android</span>
+                            </div>
+                            <div class="platform">
+                                <i class="fab fa-apple"></i>
+                                <span>iOS</span>
+                            </div>
+                        </div>
+                        <a href="https://lockedapp.org/cl/i/27lnol" class="download-btn">Download Now</a>
+                    </div>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://i.ibb.co/PGHGZH57/images-3.jpg');">
+                        <div class="game-badge">NEW</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Pokémon TCG Pocket</h3>
+                        <p class="game-description">Collect, trade, and battle with Pokémon in this immersive digital trading card game experience.</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-value">4.9</span>
+                            </div>
+                            <div class="game-size">1.2 GB</div>
+                        </div>
+                        <div class="platforms">
+                            <div class="platform">
+                                <i class="fab fa-android"></i>
+                                <span>Android</span>
+                            </div>
+                            <div class="platform">
+                                <i class="fab fa-apple"></i>
+                                <span>iOS</span>
+                            </div>
+                        </div>
+                        <a href="https://lockedapp.org/cl/i/27lnol" class="download-btn">Download Now</a>
+                    </div>
+                </div>
+
+                <!-- Game 3 -->
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://i.ibb.co/DH7qfcCx/798420-crop0-5-1280-479-tkjnknzm-v4.webp');">
+                        <div class="game-badge">TRENDING</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Spider-Man Mobile</h3>
+                        <p class="game-description">Swing through New York City as your friendly neighborhood Spider-Man in this action-packed adventure.</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-value">4.2</span>
+                            </div>
+                            <div class="game-size">1.8 GB</div>
+                        </div>
+                        <div class="platforms">
+                            <div class="platform">
+                                <i class="fab fa-android"></i>
+                                <span>Android</span>
+                            </div>
+                            <div class="platform">
+                                <i class="fab fa-apple"></i>
+                                <span>iOS</span>
+                            </div>
+                        </div>
+                        <a href="https://lockedapp.org/cl/i/27lnol" class="download-btn">Download Now</a>
+                    </div>
+                </div>
+
+                <!-- Game 4 -->
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://i.ibb.co/PsM4YzVm/images-4.jpg');">
+                        <div class="game-badge">SIMULATION</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">American Truck Simulator Mobile</h3>
+                        <p class="game-description">Travel across the United States, deliver cargo, and build your own trucking empire on the go.</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-value">4.6</span>
+                            </div>
+                            <div class="game-size">1.5 GB</div>
+                        </div>
+                        <div class="platforms">
+                            <div class="platform">
+                                <i class="fab fa-android"></i>
+                                <span>Android</span>
+                            </div>
+                            <div class="platform">
+                                <i class="fab fa-apple"></i>
+                                <span>iOS</span>
+                            </div>
+                        </div>
+                        <a href="https://lockedapp.org/cl/i/27lnol" class="download-btn">Download Now</a>
+                    </div>
+                </div>
+
+                <!-- Game 5 -->
+                <div class="game-card">
+                    <div class="game-image" style="background-image: url('https://i.ibb.co/WpfQ4XPR/capsule-616x353.jpg');">
+                        <div class="game-badge">RACING</div>
+                    </div>
+                    <div class="game-content">
+                        <h3 class="game-title">Asphalt 9: Legends</h3>
+                        <p class="game-description">Race with the most prestigious hypercars in stunning locations around the world in this arcade racing masterpiece.</p>
+                        <div class="game-meta">
+                            <div class="game-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-value">4.8</span>
+                            </div>
+                            <div class="game-size">2.1 GB</div>
+                        </div>
+                        <div class="platforms">
+                            <div class="platform">
+                                <i class="fab fa-android"></i>
+                                <span>Android</span>
+                            </div>
+                            <div class="platform">
+                                <i class="fab fa-apple"></i>
+                                <span>iOS</span>
+                            </div>
+                        </div>
+                        <a href="https://lockedapp.org/cl/i/27lnol" class="download-btn">Download Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        &copy; 2025 All rights reserved | game app
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Flicksy Games</h3>
+                    <p>Your premier destination for premium mobile gaming experiences. Discover, download, and play the best games on your mobile device.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#">All Games</a></li>
+                        <li><a href="#">New Releases</a></li>
+                        <li><a href="#">Top Charts</a></li>
+                        <li><a href="#">Upcoming Games</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Developer Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">EULA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Flicksy Games. All rights reserved. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
